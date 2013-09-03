@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:c="http://java.sun.com/jsp/jstl/core"  
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      >
+
+    <h:head>
+        <title>FLASH MOVIE (SWF, FLV)</title>
+        <style>#mypanelgridid>tbody>tr>td { vertical-align: top; }</style>
+    </h:head>
+
+    <h:body> 
+       
+        <h:form enctype="multipart/form-data" >
+            <p:panelGrid id="mypanelgridid" columns="2"  
+                         columnClasses="topAligned" styleClass="panelColumns" >
+                <p:panel header="MOVIE CONTROL PANEL:" id="controlpanel1"> 
+                    <h:outputLink value="#{fileController.returnBack}" shape="rect" > 
+                        <h:graphicImage url="#{resource['images:back.png']}" />
+                        <h:outputText   value="BACK (to the main manu page)" />
+                    </h:outputLink>
+                    <p:growl id="messages" showDetail="true"/>
+                     <h4>FLASH MOVIE (SWF, FLV)</h4>
+
+                    <OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+                            codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0"
+                            WIDTH="240" HEIGHT="10">
+                        <PARAM NAME="movie" VALUE="procom-b.swf"/> 
+                        <PARAM NAME="menu" VALUE="false"/> 
+                        <PARAM NAME="quality" VALUE="high"/>
+                        <PARAM NAME="wmode" VALUE="transparent"/> 
+                        <PARAM NAME="bgcolor" VALUE="#FFFFFF"/> 
+                        <EMBED src="procom-b.swf" menu="false" quality="high" wmode="transparent" bgcolor="#FFFFFF"  
+                               WIDTH="140" HEIGHT="30" 
+                               TYPE="application/x-shockwave-flash" 
+                               PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash">
+                        </EMBED>
+                    </OBJECT>
+                </p:panel> 
+                <p:panel header="SELECT AND UPLOAD THE SWF VIDEO FILE TO THE ARCHIVE:" id="selectpanel1" 
+                         footer="select complet movie files (swf+flv+xml) from your local system"
+                         style="position:relative;left:2px;top:0px"
+                         >
+                    <p:message for="fileselect" showDetail="true" id="message_3"/>
+                    <!-- UWAGA problem z wykazem dla allowTypes -->
+                    <p:fileUpload id="fileselect" multiple="true" allowTypes="/(\.|\/)(swf|flv|xml)$/"  
+                                  fileUploadListener="#{fileController.handleSelectFile}" 
+                                  update="selectpanel2,moviepanel2"
+                                  />
+                </p:panel>
+                <p:panel header="SELECT A VIDEO FILE FROM THE ARCHIVE:" id="selectpanel2" 
+                         style="vertical-align:top" >
+                    <h:graphicImage url="#{resource['images:swf.png']}" />
+                    <p:menu model="#{fileController.SWFModel}"   
+                            />  
+                </p:panel>
+
+                <p:panel header="MOVIE: *.swf / *.flv" id="moviepanel2" 
+                         footer="#{fileController.SWFFileName}">
+
+                    <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="420" height="344">
+                        <!--[if !IE]>-->
+                        <object id="flashobject1" type="application/x-shockwave-flash" data="#{fileController.SWFFileName}" 
+                                width="420" height="344"> 
+                            <noscript>
+                                <a href="http://www.dvdvideosoft.com/products/dvd/Free-Audio-Converter.htm">audio converter</a>
+
+                                <a href="http://www.adobe.com/go/getflash">
+                                    <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
+                                </a>
+                            </noscript> 
+                            <param name="movie" value="#{fileController.SWFFileName}" /> 
+                            <param name="wmode" value="opaque" /> 
+                            <param name="allowScriptAccess" value="sameDomain" /> 
+                            <param name="quality" value="high" /> 
+                            <param name="menu" value="true" /> 
+                            <param name="autoplay" value="false" /> 
+                            <param name="autoload" value="true" /> 
+                            <param name="FlashVars" value="#{fileController.flashVars}"/>
+                            <param width="420" />
+                            <param height="344" />
+                            <param autoplay="0" />
+                            <param autoload="0" />
+                            <param buffer="5" />
+                            <param playercolor="376f53" />
+                            <param loadingcolor="bbbbbb" />
+                            <param buttoncolor="ffffff" />
+                            <param slidercolor="ffffff" /> 
+                        </object>
+                        <!--<![endif]--> 
+                    </object>
+                </p:panel>
+
+            </p:panelGrid>
+        </h:form>
+        <h:outputStylesheet library="css" name="layout.css"/>
+    </h:body>
+
+</html> 
+
+<!--
+<param name="FlashVars" value="flv=irena-lektyka.flv"/>
+<param name="FlashVars" value="vdo=#{fileController.FLVFileName}"/>
+-->

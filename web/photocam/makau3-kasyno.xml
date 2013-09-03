@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<param name="flv" value="makau3-kasyno.flv" />
+	<param name="width" value="480" />
+	<param name="height" value="360" />
+	<param name="autoplay" value="0" />
+	<param name="autoload" value="0" />
+	<param name="buffer" value="5" />
+	<param name="title" value="makau3-kasyno" />
+	<param name="margin" value="0" />
+	<param name="srt" value="0" />
+	<param name="showstop" value="1" />
+	<param name="showvolume" value="1" />
+	<param name="showtime" value="1" />
+	<param name="loop" value="0" />
+	<param name="startimage" value="start_frame.jpg" />
+	<param name="playercolor" value="a23033" />
+	<param name="loadingcolor" value="d4bab4" />
+	<param name="bgcolor" value="a23033" />
+	<param name="bgcolor1" value="ac4749" />
+	<param name="bgcolor2" value="a23033" />
+	<param name="buttoncolor" value="ffffff" />
+	<param name="buttonovercolor" value="e6d5d1" />
+	<param name="slidercolor1" value="ffffff" />
+	<param name="slidercolor2" value="bbbbbb" />
+	<param name="sliderovercolor" value="e6d5d1" />
+	<param name="loadonstop" value="0" />
+</config>

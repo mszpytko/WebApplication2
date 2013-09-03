@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"  
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Mod. Capturing Images with PhotoCam</title>
+    </h:head>
+    <h:body>
+        <h:form id="mainForm" enctype="multipart/form-data" prependId="false">
+            <p:panelGrid columns="1">
+                <p:panel header="PHOTOCAM CONTROL PANEL:" id="controlpanel1"> 
+                    <h:outputLink value="?faces-redirect=true" shape="rect" > 
+                        <h:outputText   value="BACK (to the main manu page)" />
+                    </h:outputLink>
+                </p:panel> 
+
+                <p:photoCam widgetVar="pc" listener="#{photoCamServiceBean.onCapture}" update="photo" />
+                <p:commandButton type="button" value="Capture" onclick="pc.capture()" update="photoPanel"/>
+                <p:panel id="photoPanel">
+                    <p:graphicImage value="./uploaded/temp/#{photoCamServiceBean.username}.png" id="photo">
+                        <p:effect type="pulsate" event="load" delay="500">
+                            <f:param name="mode" value="'show'" />
+                        </p:effect>
+                    </p:graphicImage>
+                </p:panel> 
+
+            </p:panelGrid>
+        </h:form>
+    </h:body>
+</html>

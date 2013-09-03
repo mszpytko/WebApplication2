@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"  
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:head>
+        <title>Images, Slideshows, Videos, Camera, Google Maps</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta http-equiv="pragma" content="no-cache"/>
+        <meta http-equiv="cache-control" content="no-cache"/>
+        <meta http-equiv="expires" content="-1"/>
+    </h:head>
+
+    <h:body>
+        <h3>Images, Slideshows, Videos, Camera, Google Maps</h3>
+        <h:form id="mainForm" enctype="multipart/form-data" prependId="false">
+            <p:panelGrid columns="1" >
+                <p:messages showDetail="true" id="messages" />
+                <p:growl id="filemessages" showDetail="true"/>
+
+                <p:commandButton value="ImageStore in SQL Database" action="views/imageStoreInSQL.xhtml"  icon="ui-icon-disk"
+                                 />
+                <p:commandButton value="Display (All) Images from SQL Database" action="views/displayImageFromSQL.xhtml" icon="ui-icon-image" 
+                                 />
+                <p:commandButton value="Slideshow (Poll) - Display Images from SQL Database + FLV flash movie" action="views/displayImagePollFromDBwithFLV.xhtml" icon="slide_show.ico" 
+                                 />
+                <p:commandButton value="Show FLV flash movie" action="videos/displayFLVmovie.xhtml" icon="ui-icon-video"
+                                 />
+                <p:commandButton value="Show SWF flash movie" action="videos/displaySWFmovie.xhtml" icon="ui-icon-video"
+                                 />
+                <p:commandButton value="Show MP4 QuickTime movie" action="videos/displayMP4movie.xhtml" icon="ui-icon-video"
+                                 />
+                <p:commandButton value="Capturing Images with PhotoCam (mod.)" action="captureImageMod.xhtml" icon="ui-icon-person" 
+                                 />
+                <p:commandButton value="Mapping with Google Maps (Wroclaw)" action="googlemaps/wroclawmaps1.xhtml" icon="ui-icon-home"
+                                 />
+
+
+            </p:panelGrid>
+        </h:form>
+        <h:outputStylesheet library="css" name="layout.css"/>
+    </h:body>
+
+</html>
+

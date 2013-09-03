@@ -1,0 +1,33 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+
+    </h:head>
+
+    <h:body>
+        <h:form enctype="multipart/form-data">
+            <p:panel header="CONTROL PANEL:" id="controlpanel1"> 
+                <h:outputLink value="?faces-redirect=true" shape="rect" > 
+                    <h:outputText   value="BACK (to the main manu page)" />
+                </h:outputLink>
+            </p:panel> 
+            <p:messages showDetail="true" id="filemessages" />
+            
+            <h3>MULTIPLE FILE (1) GIF JPG JPEG PNG BMP ICO:</h3>
+            <p:fileUpload multiple="true"  
+                          fileUploadListener="#{imageStoreBean.handleFileUpload}" 
+                          allowTypes="/(\.|\/)(gif|ico|bmp|jpe|jpeg|png)$/">
+            </p:fileUpload>
+
+            <h3>MULTIPLE FILE (2) original PF code (bez zapisu do DB):</h3>
+            <p:fileUpload id="multipleUpload" value="#{fileController.file}" multiple="true"
+                          fileUploadListener="#{fileController.handleFileUpload}" />
+
+        </h:form> 
+
+    </h:body>
+</html>
+

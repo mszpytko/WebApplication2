@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core" 
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Display All Images from DB</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:panel header="CONTROL PANEL:" id="controlpanel1"> 
+                <h:outputLink value="?faces-redirect=true" shape="rect" > 
+                    <h:outputText   value="BACK (to the main manu page)" />
+                </h:outputLink>
+            </p:panel> 
+            <ui:repeat value="#{getImagesFromDB.imageList}" var="image"> 
+
+                <p:panel header="#{image.info}"
+                         rendered="#{getImagesFromDB.inRange(image.id)}" >
+                    <p:graphicImage value="#{getImagesFromDB.image}" height="#{image.height}" width="#{image.width}"  >
+                        <f:param name="image_id" value="#{image.id}"/>
+                    </p:graphicImage>
+                </p:panel>
+
+            </ui:repeat>
+        </h:form>
+    </h:body>
+</html>
+

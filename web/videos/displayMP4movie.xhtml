@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      >
+
+    <h:head> 
+        <title>MP4 QuickTimeMovie</title>
+        <style>#mypanelgridid>tbody>tr>td { vertical-align: top; }</style>
+    </h:head>
+
+    <h:body> 
+        
+        <h:form>
+            <p:panelGrid id="mypanelgridid" columns="2"  
+                         columnClasses="topAligned" styleClass="panelColumns" >
+                <p:panel header="MOVIE CONTROL PANEL:" id="controlpanel1"  > 
+                    <h:outputLink value="#{fileController.returnBack}" shape="rect" > 
+                        <h:graphicImage url="#{resource['images:back.png']}" />
+                        <h:outputText   value="BACK (to the main manu page)" />
+                    </h:outputLink>
+                    <h4>MP4 QuickTimeMovie</h4>
+                    <p:messages showDetail="true" id="messages_2" /> 
+                </p:panel> 
+                <p:panel header="SELECT AND UPLOAD THE VIDEO FILE TO THE ARCHIVE:" id="selectpanel1" 
+                         footer="select file from your system" closable="true" 
+                         style="position:relative;left:2px;top:0px"
+                          >
+                    <p:message for="fileselect" showDetail="true" id="message_3"/>
+                    <!-- UWAGA problem z wykazem dla allowTypes -->
+                    <p:fileUpload id="fileselect" multiple="false"  allowTypes="/(\.|\/)(mp4|mpg|mov|avi)$/" 
+                                  fileUploadListener="#{fileController.handleSelectFile}" 
+                                  update="selectpanel2,moviepanel2"
+                                  />
+                </p:panel>
+                <p:panel header="SELECT A VIDEO FILE FROM THE ARCHIVE:" id="selectpanel2" 
+                         closable="true" style="vertical-align:top" >
+                    <h:graphicImage url="#{resource['images:mp4.png']}" />
+                    <p:menu model="#{fileController.MP4Model}"   />  
+                </p:panel>
+                <p:panel header="QUICKTIME MOVIE: PLAY " id="moviepanel2" footer="#{fileController.fileName}">
+
+                    <OBJECT CLASSID="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B"
+
+                            CODEBASE="http://www.apple.com/qtactivex/qtplugin.cab" 
+                            WIDTH="360" HEIGHT="336" >
+                        <PARAM NAME="src" VALUE="#{fileController.fileName}" />
+                        <PARAM NAME="autoplay" VALUE="false" />
+                        <PARAM NAME="showControls" VALUE="true" />
+
+                        <EMBED SRC="#{fileController.fileName}" TYPE="image/x-macpaint"
+                               PLUGINSPAGE="http://www.apple.com/quicktime/download" 
+                               WIDTH="360" HEIGHT="336" AUTOPLAY="false"
+                               CONTROLLER="true" moviename="targetmov"
+                               scale="tofit" >
+                        </EMBED>
+
+                    </OBJECT>
+                </p:panel>
+            </p:panelGrid>
+        </h:form>
+
+        <h:outputStylesheet library="css" name="layout.css"/>
+    </h:body>
+
+</html> 
+
+
+<!-- "eq-irena-lektyka.mp4" -->
+<!--
+position:relative;left:200px;top:50px;width:300px
+-->
